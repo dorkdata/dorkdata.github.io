@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dorkdata | Data Strategy & Engineering Consultancy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a3093;
+            --secondary-color: #a044ff;
+            --dark-color: #1a1a2e;
+            --light-color: #f9f9f9;
+            --text-color: #4a4a4a;
+            --white-color: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Logo --- */
+        header {
+            background: var(--white-color);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+        }
+        
+        .logo span {
+            display: inline-block;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        .logo span:nth-child(1) { color: #6a3093; animation-delay: 0.1s; }
+        .logo span:nth-child(2) { color: #7b37a3; animation-delay: 0.2s; }
+        .logo span:nth-child(3) { color: #8c3eb3; animation-delay: 0.3s; }
+        .logo span:nth-child(4) { color: #9d45c3; animation-delay: 0.4s; }
+        .logo span:nth-child(5) { color: #ad52d0; animation-delay: 0.5s; }
+        .logo span:nth-child(6) { color: #bd5fdc; animation-delay: 0.6s; }
+        .logo span:nth-child(7) { color: #cd6ce8; animation-delay: 0.7s; }
+        .logo span:nth-child(8) { color: #de79f4; animation-delay: 0.8s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white-color);
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-button {
+            background-color: var(--white-color);
+            color: var(--primary-color);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .section-title .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Services Section --- */
+        #services {
+            background-color: var(--white-color);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white-color);
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+        }
+
+        /* --- Experience Section --- */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .impact-card .number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .impact-card .description {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-top: 10px;
+        }
+
+        /* --- Tech Stack Section --- */
+        #tech-stack {
+            background-color: var(--white-color);
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .tech-category h4 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-item {
+            background: #eef;
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+             width: 250px;
+             height: 250px;
+             border-radius: 50%;
+             object-fit: cover;
+             border: 5px solid var(--white-color);
+             box-shadow: 0 5px 20px rgba(106, 48, 147, 0.3);
+        }
+        
+        /* --- Contact Section --- */
+        #contact {
+            text-align: center;
+        }
+
+        #contact .container {
+            max-width: 800px;
+        }
+        
+        .contact-info {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark-color);
+            color: #ccc;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        
+        /* --- Responsiveness --- */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-bottom: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#hero" class="logo">
+                    <span>d</span><span>o</span><span>r</span><span>k</span><span>d</span><span>a</span><span>t</span><span>a</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#services">Services</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#tech-stack">Technology</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Transform Your Data into Your Greatest Asset</h1>
+                <p>
+                    A data leader with a proven track record of building, scaling, and governing data platforms to drive high-impact business outcomes. Let's unlock the value in your data.
+                </p>
+                <a href="#contact" class="cta-button">Start a Conversation</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Core Services</h2>
+                    <p class="subtitle">From strategy to execution, I provide end-to-end data solutions tailored to solve your most complex business challenges.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon">📈</div>
+                        <h3>Data Strategy & Governance</h3>
+                        <ul>
+                            <li>Data Governance Frameworks</li>
+                            <li>Master Data Management (MDM)</li>
+                            <li>Data Quality Improvement</li>
+                            <li>C-Suite Reporting Strategy</li>
+                            <li>M&A Data Integration</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">🏗️</div>
+                        <h3>Data Engineering & Architecture</h3>
+                        <ul>
+                            <li>Modern Data Platforms (Azure)</li>
+                            <li>Delta Lakehouse Implementation</li>
+                            <li>ELT/ETL Pipeline Automation</li>
+                            <li>Medallion Architecture Design</li>
+                            <li>CI/CD for Data Workflows</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">📊</div>
+                        <h3>Business Intelligence & Analytics</h3>
+                        <ul>
+                            <li>Executive Dashboards (Power BI, Tableau)</li>
+                            <li>Sales & Financial Forecasting</li>
+                            <li>Revenue Assurance Modules</li>
+                            <li>Custom Data Visualisations</li>
+                            <li>Data-Driven Upsell/Cross-sell Strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Proven Impact</h2>
+                    <p class="subtitle">My expertise has delivered tangible, multi-million pound results by improving data quality, efficiency, and strategic insight.</p>
+                </div>
+                <div class="experience-grid">
+                    <div class="impact-card">
+                        <div class="number">£7.4M+</div>
+                        <div class="description">New & Incremental Revenue Driven</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="number">85%</div>
+                        <div class="description">Max Improvement in Organisational Data Quality</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="number">40%</div>
+                        <div class="description">Reduction in M&A Data Migration Time</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="number">2,000+</div>
+                        <div class="description">Managerial Hours Saved Annually on Key Processes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tech-stack">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Technology Expertise</h2>
+                    <p class="subtitle">Proficient across the modern data stack to build scalable, reliable, and governed data solutions.</p>
+                </div>
+                <div class="tech-categories">
+                    <div class="tech-category">
+                        <h4>Engineering & Architecture</h4>
+                        <div class="tech-list">
+                            <span class="tech-item">Azure Databricks</span>
+                            <span class="tech-item">Python/PySpark</span>
+                            <span class="tech-item">Azure Data Factory</span>
+                            <span class="tech-item">Delta Lake</span>
+                            <span class="tech-item">Fivetran</span>
+                            <span class="tech-item">dbt</span>
+                            <span class="tech-item">SQL Server</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h4>BI & Analytics</h4>
+                        <div class="tech-list">
+                            <span class="tech-item">Power BI</span>
+                            <span class="tech-item">Tableau</span>
+                            <span class="tech-item">DAX</span>
+                            <span class="tech-item">M Query</span>
+                            <span class="tech-item">SQL</span>
+                            <span class="tech-item">SSRS</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h4>Systems & Platforms</h4>
+                        <div class="tech-list">
+                            <span class="tech-item">Salesforce</span>
+                            <span class="tech-item">Workday</span>
+                            <span class="tech-item">SAP BW</span>
+                            <span class="tech-item">Oracle DB</span>
+                            <span class="tech-item">IBM DB2</span>
+                            <span class="tech-item">HubSpot</span>
+                        </div>
+                    </div>
+                     <div class="tech-category">
+                        <h4>Data Enrichment & APIs</h4>
+                        <div class="tech-list">
+                            <span class="tech-item">D&B Connect</span>
+                            <span class="tech-item">Google Maps API</span>
+                            <span class="tech-item">REST APIs</span>
+                            <span class="tech-item">ZoomInfo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="about">
+            <div class="container">
+                 <div class="section-title">
+                    <h2>About Me</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images/brian.png" alt="Brian O'Reilly">
+                    </div>
+                    <div class="about-text">
+                        <h3>Brian O'Reilly</h3>
+                        <p>I am a strategic data leader passionate about solving complex business challenges by building robust data platforms and fostering data-driven cultures. With a First Class Honours degree in Business Information Systems and over a decade of experience, I've led teams and initiatives across multiple industries, from finance to enterprise software.</p>
+                        <p>My work focuses on creating tangible value—whether that's surfacing millions in revenue, saving thousands of hours in manual work, or establishing governance that stands the test of rapid corporate growth. I am a continuous learner, currently exploring Azure AI and Generative AI, and I thrive on turning chaotic data into a clear strategic advantage.</p>
+                         <p>Based in Spain, available for remote or hybrid projects in Europe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Ready to Build Your Data Future?</h2>
+                    <p class="subtitle">Let's discuss how my expertise can help you achieve your business goals. Reach out to start the conversation.</p>
+                </div>
+                <div class="contact-info">
+                    <p>Email: <a href="mailto:brianoreilly@workmail.com">brianoreilly@workmail.com</a></p>
+                    <p>Phone: <a href="tel:+353877033260">+353 877033260</a></p>
+                </div>
+                <a href="https://www.linkedin.com/in/brian-o-reilly-data" target="_blank" class="cta-button">Connect on LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 dorkdata. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
